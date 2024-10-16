@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638645622287676526
-    m_Hash: 966462131
+      ticks: 638646483016854356
+    m_Hash: 2792176889
   m_LockFileStatus:
     m_FilePath: C:/Users/Administrator/Desktop/Photon-Network/Game/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638645622287806290
-    m_Hash: 4260635170
+      ticks: 638646483016874303
+    m_Hash: 3593778981
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -581,18 +581,18 @@ m_ResolvedPackages:
     recommended: 1.7.6
     deprecated: []
   dependencies:
-  - name: com.unity.modules.audio
-    version: 1.0.0
   - name: com.unity.modules.director
     version: 1.0.0
   - name: com.unity.modules.animation
     version: 1.0.0
+  - name: com.unity.modules.audio
+    version: 1.0.0
   - name: com.unity.modules.particlesystem
     version: 1.0.0
   resolvedDependencies:
-  - name: com.unity.modules.audio
-    version: 1.0.0
   - name: com.unity.modules.director
+    version: 1.0.0
+  - name: com.unity.modules.audio
     version: 1.0.0
   - name: com.unity.modules.animation
     version: 1.0.0
@@ -2890,11 +2890,9 @@ m_ResolvedPackages:
     - 3.0.26
     - 3.0.27
     - 3.0.28
-    - 3.0.31
     compatible:
     - 3.0.28
-    - 3.0.31
-    recommended: 3.0.31
+    recommended: 3.0.28
     deprecated: []
   dependencies:
   - name: com.unity.ext.nunit
@@ -3205,7 +3203,6 @@ m_ResolvedPackages:
     - 1.4.2
     - 1.4.3
     - 1.4.4
-    - 1.4.5
     - 2.0.1-exp.1
     - 2.0.1-exp.2
     - 2.0.1-pre.12
@@ -3226,7 +3223,6 @@ m_ResolvedPackages:
     - 1.4.2
     - 1.4.3
     - 1.4.4
-    - 1.4.5
     - 2.0.1-exp.1
     - 2.0.1-exp.2
     - 2.0.1-pre.12
@@ -3331,11 +3327,9 @@ m_ResolvedPackages:
     - 1.2.3
     - 1.2.4
     - 1.2.5
-    - 1.2.6
     compatible:
     - 1.2.5
-    - 1.2.6
-    recommended: 1.2.6
+    recommended: 1.2.5
     deprecated: []
   dependencies:
   - name: com.unity.test-framework
