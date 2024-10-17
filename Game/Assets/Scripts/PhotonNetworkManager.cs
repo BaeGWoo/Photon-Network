@@ -10,7 +10,8 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] InputField emailInputField;
     [SerializeField] InputField passwordInputField;
-
+    private PopUpManager popUpManager;
+    private AlarmType alarmType;
     public void Success(LoginResult loginResult)
     {
 
@@ -28,7 +29,8 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
 
     public void Failure(PlayFabError playFabError)
     {
-        Debug.Log(playFabError.GenerateErrorReport());
+        //Debug.Log(playFabError.GenerateErrorReport());
+        PopUpManager.Instance.Show(AlarmType.SIGNINFAILURE, playFabError.GenerateErrorReport());
     }
 
     public void OnSignUp()
