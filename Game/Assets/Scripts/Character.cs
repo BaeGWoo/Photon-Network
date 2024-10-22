@@ -10,12 +10,14 @@ public class Character : MonoBehaviourPun
     [SerializeField] Camera remoteCamera;
     [SerializeField] Move move;
     [SerializeField] Rotation rotation;
+    [SerializeField] Rigidbody rigidbody;
+
 
     private void Awake()
     {
         move=GetComponent<Move>();
         rotation=GetComponent<Rotation>();
-
+        rigidbody=GetComponent<Rigidbody>();
     }
 
     void Start()
@@ -23,10 +25,15 @@ public class Character : MonoBehaviourPun
         DisableCamera();
     }
 
-    void Update()
+    private void Update()
     {
-        move.Movement();
-        rotation.RotateY();
+        rotation.InputRotateY();
+    }
+
+    void FixedUpdate()
+    {
+        move.Movement(rigidbody);
+        rotation.RotateY(rigidbody);
     }
 
     public void DisableCamera()
