@@ -27,11 +27,13 @@ public class Character : MonoBehaviourPun
 
     private void Update()
     {
+        if (photonView.IsMine == false) return;
         rotation.InputRotateY();
     }
 
     void FixedUpdate()
     {
+        if (photonView.IsMine == false) return;
         move.Movement(rigidbody);
         rotation.RotateY(rigidbody);
     }

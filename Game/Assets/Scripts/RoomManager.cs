@@ -13,7 +13,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     [SerializeField] InputField roomTitleInputField;
     [SerializeField] InputField roomCapacityInputField;
     [SerializeField] Transform contentTransform;
-    private Dictionary<string, RoomInfo> dictionary = new Dictionary<string, RoomInfo>();
+    private Dictionary<string, GameObject> dictionary = new Dictionary<string, GameObject>();
 
 
 
@@ -34,39 +34,72 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
+        GameObject temporaryRoom;
+
+        foreach(RoomInfo roomInfo in roomList)
+        {
+            if (roomInfo.RemovedFromList == true)
+            {
+                dictionary.TryGetValue(roomInfo.Name, out temporaryRoom);
+                Destroy(temporaryRoom);
+                dictionary.Remove(roomInfo.Name);
+            }
+
+            else
+            {
+                if (dictionary.ContainsKey(roomInfo.Name) == false)
+                {
+                    GameObject roomObject= Instantiate(Resources.Load<GameObject>("Room"),contentTransform);
+
+                    roomObject.GetComponent<Information>().SetData
+                    (
+                        roomInfo.Name,
+                        roomInfo.PlayerCount,
+                        roomInfo.MaxPlayers
+                    );
+
+                    dictionary.Add(roomInfo.Name, roomObject);
+                }
+
+                else
+                {
+                    dictionary.TryGetValue(roomInfo.Name, out temporaryRoom);
+                    temporaryRoom.GetComponent<Information>().SetData
+                    (
+                        roomInfo.Name,
+                        roomInfo.PlayerCount,
+                        roomInfo.MaxPlayers
+
+                    );
+                }
+            }
+        }
+
         // 룸 삭제 
-        RemoveRoom();
+        //RemoveRoom();
 
         // 룸 업데이트
-        UpdateRoom();
+        //UpdateRoom();
 
         // 룸 생성
-        InstantiateRoom();
+        //InstantiateRoom();
         
     }
 
-    public void InstantiateRoom()
-    {
-        foreach(RoomInfo roomInfo in dictionary.Values)
-        {
-            // 1. Room 오브젝트 생성합니다.
-            GameObject room=Instantiate(Resources.Load<GameObject>("Room"));
+    //public void InstantiateRoom()
+    //{
+    //    foreach(RoomInfo roomInfo in dictionary.Values)
+    //    {
+    //        // 1. Room 오브젝트 생성합니다.
+    //        GameObject room=Instantiate(Resources.Load<GameObject>("Room"));
+    //
+    //        // 2. room 오브젝트의 위치 값을 설정합니다.
+    //        room.transform.SetParent(contentTransform);
+    //
+    //        // 3. room 오브젝트 안에 있는 Text 속성을 설정합니다.
+    //        room.GetComponent<Information>().SetData(roomInfo.Name, roomInfo.PlayerCount, roomInfo.MaxPlayers);
+    //    }
+    //}
 
-            // 2. room 오브젝트의 위치 값을 설정합니다.
-            room.transform.SetParent(contentTransform);
 
-            // 3. room 오브젝트 안에 있는 Text 속성을 설정합니다.
-            room.GetComponent<Information>().SetData(roomInfo.Name, roomInfo.PlayerCount, roomInfo.MaxPlayers);
-        }
-    }
-
-    public void UpdateRoom()
-    {
-
-    }
-
-    public void RemoveRoom()
-    {
-
-    }
 }
